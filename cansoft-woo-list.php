@@ -3,19 +3,20 @@
 * Plugin Name: Cansoft woo list
 * Description: Ads a Cansoft profile list to the end of posts
 * Version: 1.0
-* Author: Brad Traversy
+* Author: Shakil Hossain
 * Text Domain: cansoft_domain
 **/
-
+   
 // Exit if Accessed Directly
 if(!defined('ABSPATH')){
 	exit;
 }
-
+require_once( wp_normalize_path(ABSPATH).'wp-load.php');
 
 require_once(ABSPATH . 'wp-admin/includes/media.php');
 require_once(ABSPATH . 'wp-admin/includes/file.php');
 require_once(ABSPATH . 'wp-admin/includes/image.php');
+
   
 function my_acf_notice() {
 	?>
@@ -120,10 +121,10 @@ for ($i = 0; $i < count($body->products); $i++) {
 
 	$gallary = [];
 
-	for ($i = 0; $j < $body->products[$i]->images; $j++) {
-		$image = media_sideload_image($body->products[$i]->images[$j], $post_id, '', 'id');
-		array_push($gallary, $image);
-	}
+	// for ($i = 0; $j < $body->products[$i]->images; $j++) {
+	// 	$image = media_sideload_image($body->products[$i]->images[$j], $post_id, '', 'id');
+	// 	array_push($gallary, $image);
+	// }
 	$image = media_sideload_image($body->products[$i]->thumbnail, $post_id, '', 'id');
 
 	set_post_thumbnail($post_id, $image);
